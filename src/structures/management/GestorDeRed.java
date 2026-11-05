@@ -57,6 +57,10 @@ public class GestorDeRed {
     public void limpiarHistorialAntiguo(int mantener) {
         // TODO 10: Implementar la optimización del historial.
         // Eliminar los registros más antiguos para mantener solo los últimos 'mantener' eventos.
+        while (historialEventos.size() > mantener) {
+            historialEventos.remove(0);
+        }
+
     }
 
     // =========================================================================

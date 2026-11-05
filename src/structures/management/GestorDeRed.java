@@ -32,7 +32,7 @@ public class GestorDeRed {
     public GestorDeRed() {
         // TODO: Inicializa las colecciones usando las implementaciones más adecuadas de Java
         // (ArrayList, ArrayDeque, HashMap, etc.)
-        this.historialEventos = new ArrayList<>();
+        this.historialEventos = new LinkedList<>();
         this.navegadorAlertas = new ArrayDeque<>();
         this.colaMonitoreo = new ArrayDeque<>();
         this.topologiaRed = new HashMap<>();
@@ -83,7 +83,11 @@ public class GestorDeRed {
         // TODO 3: Implementar la lógica de desplazamiento hacia atrás.
         // Debe devolver la alerta anterior o null si es la primera.
         // Recuerda actualizar el estado de 'alertaActual'.
-        return null;
+        if (navegadorAlertas.isEmpty()) return null;
+        String primera = navegadorAlertas.pollFirst();
+        navegadorAlertas.addLast(primera);
+        alertaActual = primera;
+        return alertaActual;
     }
 
     public String getAlertaActual() { return alertaActual; }
@@ -95,6 +99,9 @@ public class GestorDeRed {
     public void programarConsulta(String idSensor) {
         // TODO 4: Implementar la programación de la consulta.
         // El sensor debe agregarse a la cola solo si NO está ya programado.
+        if (!colaMonitoreo.contains(idSensor)) {
+            colaMonitoreo.add(idSensor);
+        }
     }
 
     public String obtenerSiguienteSensor() {

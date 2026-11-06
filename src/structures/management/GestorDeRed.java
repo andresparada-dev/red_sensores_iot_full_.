@@ -127,6 +127,14 @@ public class GestorDeRed {
         // TODO 6: Implementar la conexión bidireccional entre dos sensores.
         // Debe agregar sensorB a la lista de vecinos de sensorA, y viceversa.
         // Asegurar que no se creen conexiones duplicadas.
+        if (sensorA.equals(sensorB)) return;
+
+        List<String> vecinosA = topologiaRed.computeIfAbsent(sensorA, k -> new ArrayList<>());
+        List<String> vecinosB = topologiaRed.computeIfAbsent(sensorB, k -> new ArrayList<>());
+
+        if (!vecinosA.contains(sensorB)) vecinosA.add(sensorB);
+        if (!vecinosB.contains(sensorA)) vecinosB.add(sensorA);
+
     }
 
     public List<String> obtenerVecinos(String idSensor) {

@@ -170,7 +170,7 @@ public class GestorDeRed {
     public LecturaSensor procesarSiguienteLectura() {
         // TODO 8: Implementar la extracción del buffer.
         // Debe remover y devolver la lectura más antigua del buffer (FIFO).
-        return null;
+        return bufferIngesta.poll();
     }
 
     public List<LecturaSensor> filtrarAlertasCriticas(double limitePm25) {

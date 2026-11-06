@@ -134,14 +134,17 @@ public class GestorDeRed {
 
         if (!vecinosA.contains(sensorB)) vecinosA.add(sensorB);
         if (!vecinosB.contains(sensorA)) vecinosB.add(sensorA);
-
+    }
+    
+    public void registrarSensor(String idSensor) {
+        topologiaRed.putIfAbsent(idSensor, new ArrayList<>());
     }
 
     public List<String> obtenerVecinos(String idSensor) {
         // TODO 7: Implementar la consulta de conexiones.
         // Debe devolver la lista de sensores conectados al idSensor proporcionado.
         // Retornar una lista vacía si el sensor no tiene conexiones.
-        return null;
+        return topologiaRed.getOrDefault(idSensor, new ArrayList<>());
     }
 
     public List<String> detectarEstacionesAisladas() {
